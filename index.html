@@ -1,0 +1,2406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Graduation Project Navigation</title>
+
+<style>
+
+/* Usecase page styles */
+#usecase.page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 200px);
+  padding: 20px 40px;
+  padding-bottom: 150px;
+}
+
+.usecase-container {
+  width: 100%;
+  max-width: 1400px;
+}
+
+.usecase-container h1 {
+  font-size: 120px;
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 0;
+}
+
+.usecase-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.usecase-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  transition: all 0.3s ease;
+}
+
+.usecase-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-8px);
+}
+
+.usecase-card.left {
+  border-left: 8px solid #4fc3f7;
+}
+
+.usecase-card.right {
+  border-left: 8px solid #ff6b4a;
+}
+
+.usecase-card h2 {
+  font-size: 42px;
+  margin: 0 0 40px 0;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.usecase-card.left h2 {
+  color: #4fc3f7;
+}
+
+.usecase-card.right h2 {
+  color: #ff6b4a;
+}
+
+.usecase-card h3 {
+  font-size: 32px;
+  margin: 20px 0;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+@media (max-width: 1200px) {
+  .usecase-container h1 {
+    font-size: 72px;
+    margin-bottom: 25px;
+  }
+  
+  .usecase-grid {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .usecase-card {
+    padding: 30px;
+  }
+  
+  .usecase-card h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+  }
+  
+  .usecase-card h3 {
+    font-size: 24px;
+    margin: 14px 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .usecase-container h1 {
+    font-size: 48px;
+    margin-bottom: 18px;
+  }
+  
+  .usecase-card {
+    padding: 20px;
+  }
+  
+  .usecase-card h2 {
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+  
+  .usecase-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+}
+
+/* Purpose and Goal page styles */
+#purpose.page,
+#goal.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 200px);
+  padding: 40px;
+}
+
+#purpose h1,
+#goal h1 {
+  font-size: 72px;
+  margin-bottom: 40px;
+}
+
+#purpose h2,
+#goal h2 {
+  font-size: 36px;
+  margin: 15px 0;
+  font-weight: normal;
+  line-height: 1.5;
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  #purpose h1,
+  #goal h1 {
+    font-size: 42px;
+    margin-bottom: 25px;
+  }
+  
+  #purpose h2,
+  #goal h2 {
+    font-size: 22px;
+    margin: 10px 0;
+  }
+}
+
+/* Cost pages styles - prob1, prob2, prob3 */
+#prob1.page,
+#prob2.page,
+#prob3.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: calc(100vh - 200px);
+  padding: 20px;
+  padding-bottom: 150px;
+}
+
+.cost-container {
+  width: 85%;
+  max-width: 1200px;
+}
+
+.cost-container h1 {
+  font-size: 55px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.cost-container h2 {
+  font-size: 42px;
+  margin-bottom: 28px;
+  text-align: center;
+  color: #4fc3f7;
+}
+
+.cost-table {
+  width: 100%;
+  font-size: 24px;
+}
+
+.cost-row {
+  display: flex;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cost-row.header {
+  font-weight: bold;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+  font-size: 26px;
+  padding-bottom: 14px;
+  margin-bottom: 6px;
+}
+
+.cost-row.total {
+  font-weight: bold;
+  border-top: 3px solid rgba(255, 255, 255, 0.5);
+  border-bottom: none;
+  margin-top: 10px;
+  padding-top: 18px;
+  font-size: 28px;
+  color: #ff6b4a;
+}
+
+.cost-col {
+  flex: 1;
+}
+
+.cost-col.service {
+  flex: 2;
+}
+
+.cost-col.usd,
+.cost-col.jpy {
+  text-align: right;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .cost-container h1 {
+    font-size: 32px;
+  }
+  
+  .cost-container h2 {
+    font-size: 24px;
+  }
+  
+  .cost-table {
+    font-size: 16px;
+  }
+  
+  .cost-row.header {
+    font-size: 18px;
+  }
+  
+  .cost-row.total {
+    font-size: 20px;
+  }
+}
+
+/* Step/Result pages styles - 3x bigger text */
+#step1.page,
+#step2-1.page,
+#step2-2.page,
+#step2-3.page,
+#step3-1.page,
+#step3-2.page,
+#step3-3.page,
+#step3-4.page,
+#step4-1.page,
+#step4-2.page,
+#step4-3.page,
+#step4-4.page,
+#step4-5.page,
+#step4-6.page,
+#step4-7.page,
+#step4-8.page,
+#step4-9.page {
+  padding-bottom: 120px;
+}
+
+#step1.page h1,
+#step2-1.page h1,
+#step2-2.page h1,
+#step2-3.page h1,
+#step3-1.page h1,
+#step3-2.page h1,
+#step3-3.page h1,
+#step3-4.page h1,
+#step4-1.page h1,
+#step4-2.page h1,
+#step4-3.page h1,
+#step4-4.page h1,
+#step4-5.page h1,
+#step4-6.page h1,
+#step4-7.page h1,
+#step4-8.page h1,
+#step4-9.page h1 {
+  font-size: 90px;
+  margin-bottom: 20px;
+}
+
+#step1.page h2,
+#step2-1.page h2,
+#step2-2.page h2,
+#step2-3.page h2,
+#step3-1.page h2,
+#step3-2.page h2,
+#step3-3.page h2,
+#step3-4.page h2,
+#step4-1.page h2,
+#step4-2.page h2,
+#step4-3.page h2,
+#step4-4.page h2,
+#step4-5.page h2,
+#step4-6.page h2,
+#step4-7.page h2,
+#step4-8.page h2,
+#step4-9.page h2 {
+  font-size: 54px;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 900px) {
+  #step1.page h1,
+  #step2-1.page h1,
+  #step2-2.page h1,
+  #step2-3.page h1,
+  #step3-1.page h1,
+  #step3-2.page h1,
+  #step3-3.page h1,
+  #step3-4.page h1,
+  #step4-1.page h1,
+  #step4-2.page h1,
+  #step4-3.page h1,
+  #step4-4.page h1,
+  #step4-5.page h1,
+  #step4-6.page h1,
+  #step4-7.page h1,
+  #step4-8.page h1,
+  #step4-9.page h1 {
+    font-size: 56px;
+  }
+  
+  #step1.page h2,
+  #step2-1.page h2,
+  #step2-2.page h2,
+  #step2-3.page h2,
+  #step3-1.page h2,
+  #step3-2.page h2,
+  #step3-3.page h2,
+  #step3-4.page h2,
+  #step4-1.page h2,
+  #step4-2.page h2,
+  #step4-3.page h2,
+  #step4-4.page h2,
+  #step4-5.page h2,
+  #step4-6.page h2,
+  #step4-7.page h2,
+  #step4-8.page h2,
+  #step4-9.page h2 {
+    font-size: 36px;
+  }
+}
+
+/* Fix member page overflow */
+#member1.page,
+#member2.page,
+#member3.page {
+  overflow: visible;
+  height: auto;
+}
+
+.member-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  height: auto;
+  min-height: calc(100vh - 250px);
+  padding: 20px;
+  padding-left: 0;
+  box-sizing: border-box;
+}
+
+.spacer {
+  height: 50px;
+}
+
+
+.member-text {
+  width: 45%;
+  flex-shrink: 0;
+  margin-left: -40px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.member-text h1 {
+  margin-top: 0;
+  font-size: 72px;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* Special handling for long names */
+.member-text h1.long-name {
+  font-size: 52px;
+}
+
+.member-text p {
+  font-size: 28px;
+  margin-bottom: 0px;
+  white-space: normal;
+  max-width: 100%;
+  line-height: 1.6;
+  margin: 10px 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+body.member-page-active {
+  overflow-y: auto;
+}
+
+.member-photo {
+  width: 50%;
+  height: calc(100vh - 220px);
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 12px;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.member-photo img:hover {
+  transform: scale(1.02);
+}
+
+/* Device page specific styles */
+.device-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  height: calc(100vh - 200px);
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.device-text {
+  width: 45%;
+  flex-shrink: 0;
+}
+
+.device-text h1 {
+  font-size: 82px;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.device-text h2 {
+  font-size: 40px;
+  margin: 8px 0;
+  font-weight: normal;
+}
+
+.device-text h3 {
+  font-size: 22px;
+  margin: 5px 0;
+  font-weight: normal;
+  color: rgba(255,255,255,0.8);
+}
+
+.device-image {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.device-image img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.device-image img:hover {
+  transform: scale(1.02);
+}
+
+/* Images container for dual image pages */
+.images-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.images-container .result-img {
+  flex: 1;
+  min-width: 300px;
+  max-width: 48%;
+}
+
+/* Special layout for step4-4 with vertical right column */
+.images-container.triple-layout {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.images-container.triple-layout .result-img.left-image {
+  flex: 1;
+  max-width: 48%;
+}
+
+.images-container.triple-layout .right-column {
+  flex: 1;
+  max-width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.images-container.triple-layout .right-column .result-img {
+  max-width: 100%;
+  flex: none;
+}
+
+@media (max-width: 900px) {
+  .images-container {
+    flex-direction: column;
+  }
+  
+  .images-container .result-img {
+    max-width: 100%;
+  }
+  
+  .images-container.triple-layout {
+    flex-direction: column;
+  }
+  
+  .images-container.triple-layout .result-img.left-image,
+  .images-container.triple-layout .right-column {
+    max-width: 100%;
+  }
+}
+
+.result-img {
+  max-width: 90%;
+  max-height: calc(100vh - 400px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+/* Wide/landscape images - fill more width */
+.result-img.wide-img {
+  max-width: 95%;
+  max-height: calc(100vh - 350px);
+  width: auto;
+  height: auto;
+}
+
+.result-img:hover {
+  transform: scale(1.02);
+}
+
+/* Fix page content spacing */
+.page h1 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.page h2 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.page pre {
+  margin: 5px 0;
+}
+
+.zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: zoom-out;
+}
+
+.zoom-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.zoom-overlay img {
+  max-width: 95vw;
+  max-height: 95vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.zoom-overlay.active img {
+  transform: scale(1);
+}
+
+.zoom-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  z-index: 10001;
+  user-select: none;
+}
+
+.zoom-close-btn:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+.zoom-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", "Segoe UI", sans-serif;
+  background: #2f2f33;
+  color: #f0f0f0;
+  overflow: hidden;
+}
+
+.home-center {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.home-center h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.home-center p {
+  font-size: 2rem;
+}
+
+/* Home page moon styles */
+.home-moon {
+  width: 180px;
+  height: 180px;
+  margin-bottom: 30px;
+  filter: brightness(0.9) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+  transition: filter 0.3s ease;
+}
+
+.home-moon:hover {
+  filter: brightness(1.2) drop-shadow(0 0 25px rgba(255, 255, 255, 0.6));
+}
+
+.home-moon.animating {
+  position: fixed !important;
+  z-index: 1000;
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.home-moon.invisible {
+  display: none;
+}
+
+.side-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 160px;
+  background: rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease, background 0.3s ease;
+  cursor: pointer;
+  z-index: 200;
+}
+
+#arrow-left {
+  left: 0;
+  border-radius: 0 10px 10px 0;
+}
+
+#arrow-right {
+  right: 0;
+  border-radius: 10px 0 0 10px;
+}
+
+#arrow-left:hover,
+#arrow-right:hover {
+  opacity: 1;
+  background: rgba(0,0,0,0.45);
+}
+
+.side-arrow span {
+  font-size: 32px;
+  color: #fff;
+  user-select: none;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 18px 0;
+  background: rgba(20,20,20,0.85);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  z-index: 100;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  color: #e5e5e5;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  padding: 6px 8px;
+}
+
+.nav button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #4fa3ff;
+  transition: width 0.3s;
+}
+
+.nav button:hover {
+  color: #4fa3ff;
+}
+
+.nav button:hover::after {
+  width: 100%;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background: rgba(30,30,30,0.95);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 10px 0;
+  display: none;
+  flex-direction: column;
+  width: 160px;
+  backdrop-filter: blur(10px);
+}
+
+.dropdown-menu button {
+  padding: 8px 15px;
+  text-align: left;
+  width: 100%;
+  font-size: 15px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 85%;
+  max-width: 1200px;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+.page.home-center {
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0;
+}
+
+.page.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.progress-bar {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  z-index: 300;
+  padding: 12px 20px;
+  background: transparent;
+  border-radius: 20px;
+}
+
+.progress-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+}
+
+.progress-dot .dot-circle {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.progress-dot .element-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transform: scale(0.5) rotate(-180deg);
+  transition: all 0.4s ease;
+}
+
+.progress-dot .element-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.progress-dot.revealed .dot-circle {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.progress-dot.revealed .element-icon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.progress-dot:hover {
+  opacity: 0.8;
+  transform: scale(1.2);
+}
+
+.progress-dot.active .dot-circle {
+  background: var(--element-color, rgba(255, 255, 255, 0.9));
+  box-shadow: 
+    0 0 10px var(--element-color, rgba(255, 255, 255, 0.5)),
+    0 0 20px var(--element-color, rgba(255, 255, 255, 0.4)),
+    0 0 30px var(--element-color, rgba(255, 255, 255, 0.3)),
+    0 0 40px var(--element-color, rgba(255, 255, 255, 0.2));
+  transform: scale(1.3);
+}
+
+.progress-dot.active {
+  opacity: 1 !important;
+}
+
+.progress-dot.active:not(.revealed) .dot-circle {
+  opacity: 1;
+  transform: scale(1.8);
+  background: var(--element-color, #fff);
+  box-shadow: 
+    0 0 10px var(--element-color, rgba(255, 255, 255, 0.9)),
+    0 0 20px var(--element-color, rgba(255, 255, 255, 0.7)),
+    0 0 35px var(--element-color, rgba(255, 255, 255, 0.5)),
+    0 0 50px var(--element-color, rgba(255, 255, 255, 0.4)),
+    0 0 70px var(--element-color, rgba(255, 255, 255, 0.2));
+  animation: superGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes superGlow {
+  0%, 100% { 
+    transform: scale(1.8);
+    box-shadow: 
+      0 0 10px var(--element-color, rgba(255, 255, 255, 0.9)),
+      0 0 20px var(--element-color, rgba(255, 255, 255, 0.7)),
+      0 0 35px var(--element-color, rgba(255, 255, 255, 0.5)),
+      0 0 50px var(--element-color, rgba(255, 255, 255, 0.4)),
+      0 0 70px var(--element-color, rgba(255, 255, 255, 0.2));
+  }
+  50% { 
+    transform: scale(2.2);
+    box-shadow: 
+      0 0 15px var(--element-color, rgba(255, 255, 255, 1)),
+      0 0 30px var(--element-color, rgba(255, 255, 255, 0.8)),
+      0 0 50px var(--element-color, rgba(255, 255, 255, 0.6)),
+      0 0 70px var(--element-color, rgba(255, 255, 255, 0.5)),
+      0 0 100px var(--element-color, rgba(255, 255, 255, 0.3));
+  }
+}
+
+.progress-dot.active.revealed .element-icon {
+  filter: drop-shadow(0 0 8px var(--element-color))
+          drop-shadow(0 0 15px var(--element-color))
+          drop-shadow(0 0 25px var(--element-color))
+          drop-shadow(0 0 40px var(--element-color));
+  animation: iconGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes iconGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px var(--element-color))
+            drop-shadow(0 0 15px var(--element-color))
+            drop-shadow(0 0 25px var(--element-color))
+            drop-shadow(0 0 40px var(--element-color));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px var(--element-color))
+            drop-shadow(0 0 25px var(--element-color))
+            drop-shadow(0 0 40px var(--element-color))
+            drop-shadow(0 0 60px var(--element-color));
+  }
+}
+
+.progress-dot.visited.revealed .element-icon {
+  filter: drop-shadow(0 0 5px var(--element-color));
+}
+
+.progress-dot.visited {
+  opacity: 0.7;
+}
+
+@keyframes revealElement {
+  0% { transform: scale(0.5) rotate(-180deg); opacity: 0; }
+  50% { transform: scale(1.3) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.progress-dot.revealing .element-icon {
+  animation: revealElement 0.5s ease forwards;
+}
+
+.progress-dot.pyro { --element-color: #ff6b4a; }
+.progress-dot.hydro { --element-color: #4fc3f7; }
+.progress-dot.anemo { --element-color: #80cbc4; }
+.progress-dot.electro { --element-color: #ce93d8; }
+.progress-dot.dendro { --element-color: #aed581; }
+.progress-dot.cryo { --element-color: #b3e5fc; }
+.progress-dot.geo { --element-color: #ffcc80; }
+
+.progress-line {
+  width: 12px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.progress-line.active {
+  background: var(--line-color, rgba(255, 255, 255, 0.5));
+}
+
+.progress-dot::before {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 30, 30, 0.95);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  border: 1px solid var(--element-color, rgba(255,255,255,0.2));
+}
+
+.progress-dot:hover::before {
+  opacity: 1;
+}
+
+.page-counter {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.current-element-icon {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 0 5px var(--current-element-color));
+  position: relative;
+}
+
+.current-element-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.current-element-icon img.alt-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.current-element-icon img.alt-img.active {
+  opacity: 1;
+}
+
+.current-element-icon img.main-img.hidden {
+  opacity: 0;
+}
+
+.toggle-hint {
+  position: fixed;
+  bottom: 95px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  z-index: 300;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.toggle-hint.visible {
+  opacity: 1;
+}
+
+.collection-toggle {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 130px;
+  height: 130px;
+  background: transparent;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 160;
+  border: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.collection-toggle:hover {
+  background: transparent;
+  transform:scale(1.1);
+}
+
+.collection-toggle img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: brightness(0.9) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.collection-toggle:hover img {
+  filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+  transform: scale(1.1);
+}
+
+.collection-toggle.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.collection-close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  line-height: 1;
+}
+
+.collection-close:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+.collection-status {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  padding: 15px;
+  z-index: 150;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  cursor: pointer;
+}
+
+
+.collection-status:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.collection-status.hidden {
+  opacity: 0;
+  transform: translateX(20px);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.collection-status h4 {
+  margin: 0 0 10px 0;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.collection-item {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.collection-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.collection-item.collected {
+  opacity: 1;
+}
+
+.collection-item.complete {
+  opacity: 1;
+  filter: drop-shadow(0 0 8px var(--element-color));
+}
+
+.collection-item .progress-text {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+
+.collection-item.complete .progress-text {
+  color: var(--element-color);
+}
+
+@media (max-width: 900px) {
+  .member-layout,
+  .device-layout {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+  
+  .member-text,
+  .device-text {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .member-text h1 {
+    font-size: 36px;
+  }
+  
+  .member-text h1.long-name {
+    font-size: 32px;
+  }
+  
+  .member-text p {
+    font-size: 18px;
+  }
+  
+  .member-photo {
+    width: 100%;
+    height: 50vh;
+  }
+  
+  .device-image {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+  }
+  
+  .progress-bar {
+    padding: 8px 12px;
+    bottom: 12px;
+  }
+  
+  .progress-dot {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .progress-dot.active {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .progress-line {
+    width: 6px;
+  }
+  
+  .collection-status {
+    top: auto;
+    bottom: 100px;
+    right: 10px;
+    padding: 10px;
+  }
+  
+  .collection-toggle {
+    top: auto;
+    bottom: 100px;
+    right: 10px;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .collection-toggle img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .collection-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .collection-item {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .page {
+    top: 80px;
+    width: 90%;
+    padding: 10px;
+  }
+  
+  .result-img {
+    max-width: 100%;
+    max-height: calc(100vh - 300px);
+  }
+  
+  .home-moon {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 20px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Image Zoom Overlay -->
+<div class="zoom-overlay" id="zoom-overlay">
+  <span class="zoom-close-btn">&times;</span>
+  <img id="zoom-image" src="" alt="Zoomed Image">
+  <div class="zoom-hint">クリックまたはESCで閉じる</div>
+</div>
+
+
+<!-- Collection Toggle Button -->
+<div class="collection-toggle" id="collection-toggle" onclick="toggleCollection()">
+  <img src="resources/moon.png" alt="Toggle Collection">
+</div>
+
+<!-- Collection Status -->
+<div class="collection-status hidden" id="collection-status" onclick="toggleCollection()">
+  <h4>Element Collection</h4>
+  <div class="collection-grid" id="collection-grid"></div>
+</div>
+
+
+<div id="arrow-left" class="side-arrow" onclick="prevPage()">
+  <span>⟵</span>
+</div>
+
+<div id="arrow-right" class="side-arrow" onclick="nextPage()">
+  <span>⟶</span>
+</div>
+
+<!-- ナビゲーションバー -->
+<div class="nav">
+  <div class="dropdown">
+    <button>ホーム</button>
+    <div class="dropdown-menu">
+      <button onclick="showPage('member1', true)">メンバー1</button>
+      <button onclick="showPage('member2', true)">メンバー2</button>
+      <button onclick="showPage('member3', true)">メンバー3</button>
+      <button onclick="showPage('theme', true)">テーマ</button>
+      <button onclick="showPage('background', true)">背景</button>
+      <button onclick="showPage('purpose', true)">目的</button>
+      <button onclick="showPage('goal', true)">目標</button>
+      <button onclick="showPage('usecase', true)">ユースケース</button>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button>作品概要</button>
+    <div class="dropdown-menu">
+      <button onclick="showPage('device', true)">使用機器</button>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button>検証結果</button>
+    <div class="dropdown-menu">
+      <button onclick="showPage('step1', true)">メール送信</button>
+      <button onclick="showPage('step2-1', true)">フィッシングメール送信</button>
+      <button onclick="showPage('step2-2', true)">メール送信失敗</button>
+      <button onclick="showPage('step2-3', true)">メールのブロック</button>
+      <button onclick="showPage('step3-1', true)">ファイルアップロード</button>
+      <button onclick="showPage('step3-2', true)">異常ファイルアップロード</button>
+      <button onclick="showPage('step3-3', true)">ファイルサーバリソース</button>
+      <button onclick="showPage('step3-4', true)">メールサーバリソース</button>
+      <button onclick="showPage('step4-1', true)">AI報告書</button>
+      <button onclick="showPage('step4-2', true)">AI報告書</button>
+      <button onclick="showPage('step4-3', true)">AI報告書</button>
+      <button onclick="showPage('step4-4', true)">AI報告書</button>
+      <button onclick="showPage('step4-5', true)">AI報告書</button>
+      <button onclick="showPage('step4-6', true)">AI要約</button>
+      <button onclick="showPage('step4-7', true)">S3バックアップログ</button>
+      <button onclick="showPage('step4-8', true)">AIメール送信</button>
+      <button onclick="showPage('step4-9', true)">AIメール送信</button>
+
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button>コスト</button>
+    <div class="dropdown-menu">
+      <button onclick="showPage('prob1', true)">10月</button>
+      <button onclick="showPage('prob2', true)">11月</button>
+      <button onclick="showPage('prob3', true)">12月</button>
+    </div>
+  </div>
+</div>
+
+<!-- Page Counter with Element Display -->
+<div class="page-counter">
+  <div class="current-element-icon" id="current-element-icon"></div>
+  <span><span id="current-page">1</span> / <span id="total-pages">29</span></span>
+  <span id="element-name" style="opacity: 0.7; font-size: 11px;">Anemo</span>
+</div>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- 各ページ内容 -->
+<div id="home" class="page active home-center">
+  <img src="resources/moon.png" alt="Moon" class="home-moon" id="home-moon" onclick="animateMoonToCorner(true)">
+  <h1>Inspector</h1>
+  <p>Hello everyone !</p>
+</div>
+
+<div id="member1" class="page">
+  <div class="member-layout">
+    <div class="member-text">
+      <h1>翁 俊涵</h1>
+      <p>24cc0128</p>
+      <div class="spacer"></div>
+      <p>▸Role: ドキュメント - htmlウエブページ</p>
+      <p>▸Skills: ピアノ引くこと</p>
+      <p>▸Food: シチュー</p>
+      <p>▸likes: 白上フブキ</p>
+      <p>▸Hobby: マイクラ</p>
+    </div>
+    <div class="member-photo">
+      <img src="resources/os.png" alt="翁 俊涵の写真" class="zoomable">
+    </div>
+  </div>
+</div>
+
+<div id="member2" class="page">
+  <div class="member-layout">
+    <div class="member-text">
+      <h1>銭 樹義</h1>
+      <p>24cc0116</p>
+      <div class="spacer"></div>
+      <p>▸Role: Grafana Setup</p>
+      <p>▸Skills: 自作PC</p>
+      <p>▸Food: 二郎系ラーメン</p>
+      <p>▸likes: アニソン</p>
+      <p>▸Hobby: アニソンライブ</p>
+    </div>
+    <div class="member-photo">
+      <img src="resources/chin.jpg" alt="銭 樹義の写真" class="zoomable">
+    </div>
+  </div>
+</div>
+
+<div id="member3" class="page">
+  <div class="member-layout">
+    <div class="member-text">
+      <h1 class="long-name">ソフヤン ファリオ</h1>
+      <p>24cc0124</p>
+      <div class="spacer"></div>
+      <p>▸Role: AI Integration - Aws Server Setup</p>
+      <p>▸Skills: ゲーミング</p>
+      <p>▸Food: つけ麺</p>
+      <p>▸likes: 猫</p>
+      <p>▸Hobby: ファンタジー小説を読む</p>
+    </div>
+    <div class="member-photo">
+      <img src="resources/gekido.jpg" alt="ソフヤン ファリオの写真" class="zoomable">
+    </div>
+  </div>
+</div>
+
+<div id="theme" class="page">
+  <h1>テーマ</h1>
+  <h2>クラウドサーバーのツールによる複数サーバーの監視・防御及びログの出力</h2>
+  <img src="resources/ChatGPT Image Dec 19, 2025, 02_46_45 PM.png" class="result-img zoomable">
+</div>
+
+<div id="background" class="page">
+  <h1>背景</h1>
+  <h2>オンプレミスからクラウドへ移行をする会社が増加⇗⇗</h2>
+  <h2>クラウドのためのセキュリティの必要性の増加⇗⇗</h2>
+  <img src="resources/onpre_to_cloud.png" alt="移行のイラスト" class="result-img zoomable">
+</div>
+
+<div id="purpose" class="page">
+  <h1>目的</h1>
+  <h2>クラウドサーバの構築</h2>
+  <h2>ログおよびメトリクス運用と監視そしてそのセキュリティの運用</h2>
+  <h2>AIを使用した運用状況の報告</h2>
+</div>
+
+<div id="goal" class="page">
+ <div class="goal-text">
+  <h1>目標</h1>
+  <h2>EC2で構築したサーバの基本構築と防御手段の導入および実装</h2>
+  <h2>外部ツールによるログおよびメトリクスを監視</h2>
+  <h2>AIの構築および運用</h2>
+ </div>
+</div>
+
+<div id="usecase" class="page">
+  <div class="usecase-container">
+    <h1>ユースケース</h1>
+    <div class="usecase-grid">
+      <div class="usecase-card left">
+        <h2>ユーザ：セキュリティエンジニア</h2>
+        <h3>▸ 操作：AIを利用した日次報告書の作成</h3>
+        <h3>▸ 結果：監視の効率化</h3>
+      </div>
+      <div class="usecase-card right">
+        <h2>ユーザ：クラウドに移行した企業</h2>
+        <h3>▸ 操作：AWSを利用したサーバの監視</h3>
+        <h3>▸ 結果：クラウド環境でのログ監視</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="device" class="page">
+  <div class="device-layout">
+    <div class="device-text">
+      <h1>使用機器</h1>
+      <h2>PC　2台</h2>
+      <h2>Grafana</h2>
+      <h2>ClamAV</h2>
+      <h2>Rspamd</h2>
+      <h2>Claude(AI)</h2>
+      <h2>Mailcow</h2>
+      <h2>Nextcloud</h2>
+      <h2>AWS</h2>
+      <h2 style="display: inline;">EC2: </h2>
+      <h3 style="display: inline;">SES　S3</h3>
+      <h2></h2>
+      <h2 style="display: inline;">Lambda: </h2>
+      <h3 style="display: inline;">Cloudwatch　Route53</h3>
+    </div>
+    <div class="device-image">
+      <img src="resources/卒表制作2.png" alt="トポロジの写真" class="zoomable">
+    </div>
+  </div>
+</div>
+
+<div id="step1" class="page">
+  <h1>結果1</h1>
+  <h2>通常メールの送信</h2>
+  <h3>　</h3>
+  <img src="resources/normal mail sended.png" alt="通常メール送信のスクショ" class="result-img zoomable">
+</div>
+
+<div id="step2-1" class="page">
+  <h1>結果2 - 異常なメールの送信</h1>
+  <h2>フィッシングリンク付きのメールを送信</h2>
+  <h3>　</h3>
+  <img src="resources/send phising link.png" class="result-img zoomable">
+</div>
+
+<div id="step2-2" class="page">
+  <h2>メール送信の失敗</h2>
+  <h3>　</h3>
+  <img src="resources/blocked mail does not come.png" class="result-img zoomable">
+</div>
+
+<div id="step2-3" class="page">
+  <h2>メールはブロックされた</h2>
+  <h3>　</h3>
+  <img src="resources/blocked sended mail.png" class="result-img zoomable">
+</div>
+
+<div id="step3-1" class="page">
+  <h1>結果3</h1>
+  <h2>通常のファイルのアップロード</h2>
+  <h3>　</h3>
+  <img src="resources/normal file.png" class="result-img zoomable">
+</div>
+
+<div id="step3-2" class="page">
+  <h2>異常なファイルのアップロード</h2>
+  <h3>　</h3>
+  <img src="resources/block file.png" class="result-img zoomable">
+  <img src="resources/block file2.png" class="result-img zoomable">
+</div>
+
+<div id="step3-3" class="page">
+  <h2>ファイルサーバーのリソース使用状況</h2>
+  <h2>　</h2>
+  <h2>　</h2>
+  <div class="images-container">
+    <img src="resources/fileCPU.png" class="result-img zoomable">
+    <img src="resources/filemem.png" class="result-img zoomable">
+  </div>
+</div>
+
+<div id="step3-4" class="page">
+  <h2>メールサーバーのリソース使用状況</h2>
+  <h2>　</h2>
+  <h2>　</h2>
+  <div class="images-container">
+    <img src="resources/mailCPU.png" class="result-img zoomable">
+    <img src="resources/mailmem.png" class="result-img zoomable">
+  </div>
+</div>
+
+<div id="step4-1" class="page">
+  <h1>結果4 - AIの動作</h1>
+  <h2>AIによる日次報告書</h2>
+  <h3>　</h3>
+  <div class="images-container">
+    <img src="resources/grafana_ai_alert_report.png" class="result-img zoomable">
+    <img src="resources/grafana_ai_alert_report_1-2.png" class="result-img zoomable">
+  </div>
+</div>
+
+<div id="step4-2" class="page">
+  <h2>発生したアラート</h2>
+  <h3>　</h3>
+  <div class="images-container">
+    <img src="resources/grafana_ai_alert_report_2.png" class="result-img zoomable">
+    <img src="resources/grafana_ai_alert_report_2-1.png" class="result-img zoomable">
+  </div>
+</div>
+
+<div id="step4-3" class="page">
+  <h2>アラートに対するおすすめの対処法の提供</h2>
+  <h2>　</h2>
+  <div class="images-container">
+    <img src="resources/grafana_ai_alert_report_3.png" class="result-img zoomable">
+    <img src="resources/grafana_ai_alert_report_3-1.png" class="result-img zoomable">
+  </div>
+</div>
+
+<div id="step4-4" class="page">
+  <h2>TEST</h2>
+  <h2>　</h2>
+  <div class="images-container triple-layout">
+    <img src="resources/grafana_ai_alert_report_4.png" class="result-img left-image zoomable">
+    <div class="right-column">
+      <img src="resources/grafana_ai_alert_report_4-1.png" class="result-img zoomable">
+      <img src="resources/grafana_ai_alert_report_4-2.png" class="result-img zoomable">
+    </div>
+  </div>
+</div>
+
+<div id="step4-5" class="page">
+  <h2>ログ</h2>
+  <h3>　</h3>
+  <div class="images-container">
+    <img src="resources/grafana_ai_alert_report_5.png" class="result-img zoomable">
+    <img src="resources/grafana_ai_alert_report_5-1.png" class="result-img zoomable">
+  </div>
+</div>
+
+<div id="step4-6" class="page">
+  <h2>全体の要約</h2>
+  <h3>　</h3>
+  <img src="resources/grafana_ai_alert_report_6.png" class="result-img zoomable">
+</div>
+
+<div id="step4-7" class="page">
+  <h2>S3のバックアップログ</h2>
+  <h3>　</h3>
+  <img src="resources/S3_AI_LOG.png" class="result-img zoomable">
+</div>
+
+<div id="step4-8" class="page">
+  <h2>メール送信</h2>
+  <h3>　</h3>
+  <img src="resources/sum1.png" class="result-img zoomable">
+</div>
+
+<div id="step4-9" class="page">
+  <h2>メール送信</h2>
+  <h3>　</h3>
+  <img src="resources/sum2.png" class="result-img zoomable">
+</div>
+
+<div id="prob1" class="page">
+  <div class="cost-container">
+    <h1>AWSでかかったコスト</h1>
+    <h2>10月</h2>
+    <div class="cost-table">
+      <div class="cost-row header">
+        <span class="cost-col service">サービス名</span>
+        <span class="cost-col usd">金額 (USD)</span>
+        <span class="cost-col jpy">金額 (JPY)</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">Registrar</span>
+        <span class="cost-col usd">$15.00</span>
+        <span class="cost-col jpy">¥2,351</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">VirtualPrivateCloud</span>
+        <span class="cost-col usd">$5.24</span>
+        <span class="cost-col jpy">¥821</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">ElasticComputeCloud</span>
+        <span class="cost-col usd">$3.03</span>
+        <span class="cost-col jpy">¥475</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">Route53</span>
+        <span class="cost-col usd">$0.52</span>
+        <span class="cost-col jpy">¥82</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">税</span>
+        <span class="cost-col usd">$2.38</span>
+        <span class="cost-col jpy">¥373</span>
+      </div>
+      <div class="cost-row total">
+        <span class="cost-col service">合計</span>
+        <span class="cost-col usd">$26.17</span>
+        <span class="cost-col jpy">¥4,102</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="prob2" class="page">
+  <div class="cost-container">
+    <h1>AWSでかかったコスト</h1>
+    <h2>11月</h2>
+    <div class="cost-table">
+      <div class="cost-row header">
+        <span class="cost-col service">サービス名</span>
+        <span class="cost-col usd">金額 (USD)</span>
+        <span class="cost-col jpy">金額 (JPY)</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">VirtualPrivateCloud</span>
+        <span class="cost-col usd">$6.72</span>
+        <span class="cost-col jpy">¥1,055</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">ElasticComputeCloud</span>
+        <span class="cost-col usd">$4.98</span>
+        <span class="cost-col jpy">¥782</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">Route53</span>
+        <span class="cost-col usd">$0.51</span>
+        <span class="cost-col jpy">¥80</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">CloudWatch</span>
+        <span class="cost-col usd">$0.01</span>
+        <span class="cost-col jpy">¥2</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">SimpleEmailService</span>
+        <span class="cost-col usd">$0.01</span>
+        <span class="cost-col jpy">¥2</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">税</span>
+        <span class="cost-col usd">$1.23</span>
+        <span class="cost-col jpy">¥193</span>
+      </div>
+      <div class="cost-row total">
+        <span class="cost-col service">合計</span>
+        <span class="cost-col usd">$13.46</span>
+        <span class="cost-col jpy">¥2,114</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="prob3" class="page">
+  <div class="cost-container">
+    <h1>AWSでかかったコスト</h1>
+    <h2>12月</h2>
+    <div class="cost-table">
+      <div class="cost-row header">
+        <span class="cost-col service">サービス名</span>
+        <span class="cost-col usd">金額 (USD)</span>
+        <span class="cost-col jpy">金額 (JPY)</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">ElasticComputeCloud</span>
+        <span class="cost-col usd">$13.62</span>
+        <span class="cost-col jpy">¥2,138</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">VirtualPrivateCloud</span>
+        <span class="cost-col usd">$2.87</span>
+        <span class="cost-col jpy">¥451</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">CloudWatch</span>
+        <span class="cost-col usd">$1.13</span>
+        <span class="cost-col jpy">¥177</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">Route53</span>
+        <span class="cost-col usd">$0.51</span>
+        <span class="cost-col jpy">¥80</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">SimpleEmailService</span>
+        <span class="cost-col usd">$0.01</span>
+        <span class="cost-col jpy">¥2</span>
+      </div>
+      <div class="cost-row">
+        <span class="cost-col service">税</span>
+        <span class="cost-col usd">$1.81</span>
+        <span class="cost-col jpy">¥284</span>
+      </div>
+      <div class="cost-row total">
+        <span class="cost-col service">合計</span>
+        <span class="cost-col usd">$19.95</span>
+        <span class="cost-col jpy">¥3,132</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const pages = [
+  'home', 'member1', 'member2', 'member3', 'theme', 'background', 'purpose', 'goal', 'usecase',
+  'device',
+  'step1', 'step2-1', 'step2-2', 'step2-3', 'step3-1', 'step3-2', 'step3-3', 'step3-4', 'step4-1', 'step4-2', 'step4-3', 'step4-4', 'step4-5', 'step4-6', 'step4-7', 'step4-8','step4-9',
+  'prob1', 'prob2', 'prob3'
+];
+
+const pageTitles = [
+  'ホーム', 'メンバー1', 'メンバー2', 'メンバー3', 'テーマ', '背景', '目的', '目標', 'ユースケース',
+  '使用機器',
+  '結果1', '結果2-1', '結果2-2', '結果2-3', '結果3-1', '結果3-2', '結果3-3', '結果3-4', '結果4-1', '結果4-2', '結果4-3', '結果4-4', '結果4-5', '結果4-6', '結果4-7', '結果4-8','結果4-9',
+  '10月', '11月', '12月'
+];
+
+const elements = [
+  { name: 'Anemo', class: 'anemo', color: '#80cbc4', img: 'resources/Anemo.png', imgAlt: 'resources/Anemo2.png' },
+  { name: 'Geo', class: 'geo', color: '#ffcc80', img: 'resources/Geo.png', imgAlt: 'resources/Geo2.png' },
+  { name: 'Electro', class: 'electro', color: '#ce93d8', img: 'resources/Electro.png', imgAlt: 'resources/Electro2.png' },
+  { name: 'Dendro', class: 'dendro', color: '#aed581', img: 'resources/Dendro.png', imgAlt: 'resources/Dendro2.png' },
+  { name: 'Hydro', class: 'hydro', color: '#4fc3f7', img: 'resources/Hydro.png', imgAlt: 'resources/Hydro2.png' },
+  { name: 'Pyro', class: 'pyro', color: '#ff6b4a', img: 'resources/Pyro.png', imgAlt: 'resources/Pyro2.png' },
+  { name: 'Cryo', class: 'cryo', color: '#b3e5fc', img: 'resources/Cryo.png', imgAlt: 'resources/Cryo2.png' }
+];
+
+const elementDistribution = [4, 4, 4, 6, 4, 4, 3];
+
+let currentIndex = 0;
+let revealedPages = new Set([0]);
+let zoomOpen = false;
+let elementCollection = {};
+let completedElements = new Set();
+let elementAltState = {};
+let collectionVisible = false;
+let moonAnimated = false;
+
+const completeSound = document.getElementById('complete-sound');
+
+function playCompleteSound() {
+  if (completeSound) {
+    completeSound.currentTime = 0;
+    completeSound.volume = 0.5;
+    completeSound.play().catch(e => {
+      console.log('Sound play failed:', e);
+    });
+  }
+}
+
+function animateMoonToCorner(shouldNavigate) {
+  if (moonAnimated && !shouldNavigate) return;
+  
+  const homeMoon = document.getElementById('home-moon');
+  const collectionToggle = document.getElementById('collection-toggle');
+  
+  const rect = homeMoon.getBoundingClientRect();
+  
+  collectionToggle.style.opacity = '0';
+  
+  const targetTop = 105;
+  const targetLeft = window.innerWidth - 125;
+  
+  console.log('Window:', window.innerWidth, 'Animating from', rect.left, rect.top, 'to', targetLeft, targetTop);
+  
+  homeMoon.style.position = 'fixed';
+  homeMoon.style.top = rect.top + 'px';
+  homeMoon.style.left = rect.left + 'px';
+  homeMoon.style.width = rect.width + 'px';
+  homeMoon.style.height = rect.height + 'px';
+  homeMoon.style.margin = '0';
+  homeMoon.style.transform = 'rotate(0deg)';
+  homeMoon.style.transition = 'none';
+  
+  void homeMoon.offsetHeight;
+  
+  homeMoon.style.transition = 'all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      homeMoon.style.top = targetTop + 'px';
+      homeMoon.style.left = targetLeft + 'px';
+      homeMoon.style.width= '80px';
+      homeMoon.style.height = '80px';
+      homeMoon.style.transform = 'rotate(1080deg)';
+    });
+  });
+  
+  setTimeout(() => {
+    homeMoon.classList.add('invisible');
+    collectionToggle.style.opacity = '';
+    collectionToggle.classList.add('visible');
+    moonAnimated = true;
+    
+    if (shouldNavigate) {
+      nextPage();
+    }
+  }, 1300);
+}
+
+function animateMoonToCenter() {
+  const homeMoon = document.getElementById('home-moon');
+  const collectionToggle = document.getElementById('collection-toggle');
+  
+  const startTop = 105;
+  const startLeft = window.innerWidth - 125;
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+  const endLeft = centerX - 90;
+  const endTop = centerY - 90;
+  
+  console.log('Window:', window.innerWidth, 'Returning from', startLeft, startTop, 'to', endLeft, endTop);
+  
+  collectionToggle.classList.remove('visible');
+  
+  homeMoon.classList.remove('invisible');
+  homeMoon.style.position = 'fixed';
+  homeMoon.style.top = startTop + 'px';
+  homeMoon.style.left = startLeft + 'px';
+  homeMoon.style.width = '80px';
+  homeMoon.style.height = '80px';
+  homeMoon.style.margin = '0';
+  homeMoon.style.transform = 'rotate(1080deg)';
+  homeMoon.style.transition = 'none';
+  
+  void homeMoon.offsetHeight;
+  
+  homeMoon.style.transition = 'all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      homeMoon.style.top = endTop + 'px';
+      homeMoon.style.left = endLeft + 'px';
+      homeMoon.style.width = '180px';
+      homeMoon.style.height = '180px';
+      homeMoon.style.transform = 'rotate(0deg)';
+    });
+  });
+  
+  setTimeout(() => {
+    homeMoon.style.transition = 'none';
+    setTimeout(() => {
+      homeMoon.removeAttribute('style');
+    }, 50);
+  }, 1350);
+}
+
+function updateMoonVisibility() {
+  const homeMoon = document.getElementById('home-moon');
+  const collectionToggle = document.getElementById('collection-toggle');
+  
+  if (currentIndex === 0) {
+    if (moonAnimated) {
+      animateMoonToCenter();
+      moonAnimated = false;
+    }
+  } else {
+    if (!moonAnimated) {
+      animateMoonToCorner(false);
+    } else {
+      homeMoon.classList.add('invisible');
+      collectionToggle.classList.add('visible');
+    }
+  }
+}
+
+function toggleCollection() {
+  const collectionStatus = document.getElementById('collection-status');
+  const toggleBtn = document.getElementById('collection-toggle');
+  
+  collectionVisible = !collectionVisible;
+  
+  if (collectionVisible) {
+    collectionStatus.classList.remove('hidden');
+    toggleBtn.style.opacity = '0';
+    toggleBtn.style.pointerEvents = 'none';
+  } else {
+    collectionStatus.classList.add('hidden');
+    toggleBtn.style.opacity = '1';
+    toggleBtn.style.pointerEvents = 'auto';
+  }
+}
+
+function initElementCollection() {
+  elements.forEach((el, i) => {
+    elementCollection[el.class] = {
+      total: elementDistribution[i],
+      complete: false
+    };
+    elementAltState[el.class] = false;
+  });
+}
+
+function getElementForIndex(index) {
+  let count = 0;
+  for (let i = 0; i < elementDistribution.length; i++) {
+    count += elementDistribution[i];
+    if (index < count) {
+      return elements[i];
+    }
+  }
+  return elements[elements.length - 1];
+}
+
+function getPagesForElement(elementClass) {
+  let indices = [];
+  let startIndex = 0;
+  for (let i = 0; i < elements.length; i++) {
+    let endIndex = startIndex + elementDistribution[i];
+    if (elements[i].class === elementClass) {
+      for (let j = startIndex; j < endIndex; j++) {
+        indices.push(j);
+      }
+      break;
+    }
+    startIndex = endIndex;
+  }
+  return indices;
+}
+
+function checkElementComplete(elementClass) {
+  const collection = elementCollection[elementClass];
+  if (!collection) return false;
+  
+  const pageIndices = getPagesForElement(elementClass);
+  let collectedCount = 0;
+  pageIndices.forEach(idx => {
+    if (revealedPages.has(idx)) {
+      collectedCount++;
+    }
+  });
+  
+  if (collectedCount >= collection.total && !completedElements.has(elementClass)) {
+    completedElements.add(elementClass);
+    collection.complete = true;
+    elementAltState[elementClass] = true;
+    
+    playCompleteSound();
+    
+    updateProgressBarIcons();
+    updateCollectionStatus();
+  }
+  return collection.complete;
+}
+
+function updateCollectionStatus() {
+  const grid = document.getElementById('collection-grid');
+  grid.innerHTML = '';
+  
+  elements.forEach((el, i) => {
+    const item = document.createElement('div');
+    item.className = 'collection-item';
+    item.style.setProperty('--element-color', el.color);
+    
+    const pageIndices = getPagesForElement(el.class);
+    let collectedCount = 0;
+    pageIndices.forEach(idx => {
+      if (revealedPages.has(idx)) collectedCount++;
+    });
+    
+    const isComplete = collectedCount >= elementDistribution[i];
+    
+    if (collectedCount > 0) item.classList.add('collected');
+    if (isComplete) item.classList.add('complete');
+    
+    const imgSrc = isComplete ? (elementAltState[el.class] ? el.imgAlt : el.img) : el.img;
+    item.innerHTML = `
+      <img src="${imgSrc}" alt="${el.name}">
+      <span class="progress-text">${collectedCount}/${elementDistribution[i]}</span>
+    `;
+    
+    grid.appendChild(item);
+  });
+}
+
+function toggleElementImage(direction) {
+  const currentElement = getElementForIndex(currentIndex);
+  
+  if (!completedElements.has(currentElement.class)) return;
+  
+  if (direction === 'up') {
+    elementAltState[currentElement.class] = false;
+  } else if (direction === 'down') {
+    elementAltState[currentElement.class] = true;
+  }
+  
+  updateElementDisplay();
+  updateProgressBarIcons();
+  updateCollectionStatus();
+}
+
+function updateProgressBarIcons() {
+  const dots = document.querySelectorAll('.progress-dot');
+  
+  dots.forEach((dot, index) => {
+    const element = getElementForIndex(index);
+    const iconImg = dot.querySelector('.element-icon img');
+    
+    if (iconImg && completedElements.has(element.class)) {
+      iconImg.src = elementAltState[element.class] ? element.imgAlt : element.img;
+    }
+  });
+}
+
+function openZoom(imgSrc) {
+  const overlay = document.getElementById('zoom-overlay');
+  const zoomImg = document.getElementById('zoom-image');
+  zoomImg.src = imgSrc;
+  overlay.classList.add('active');
+  zoomOpen = true;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeZoom() {
+  const overlay = document.getElementById('zoom-overlay');
+  overlay.classList.remove('active');
+  zoomOpen = false;
+  document.body.style.overflow = '';
+}
+
+function initZoomableImages() {
+  document.querySelectorAll('.zoomable').forEach(function(img) {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openZoom(this.src);
+    });
+  });
+  
+  document.querySelector('.zoom-close-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    closeZoom();
+  });
+  
+  document.getElementById('zoom-overlay').addEventListener('click', function(e) {
+    if (e.target === this || e.target.classList.contains('zoom-hint')) {
+      closeZoom();
+    }
+  });
+  
+  document.getElementById('zoom-image').addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+}
+
+function generateProgressBar() {
+  const progressBar = document.getElementById('progress-bar');
+  progressBar.innerHTML = '';
+  
+  pages.forEach((page, index) => {
+    const element = getElementForIndex(index);
+    
+    const dot = document.createElement('div');
+    dot.className = 'progress-dot ' + element.class;
+    dot.setAttribute('data-title', pageTitles[index] + ' (' + element.name + ')');
+    dot.setAttribute('data-index', index);
+    dot.onclick = function() { goToPage(index); };
+    
+    const dotCircle = document.createElement('div');
+    dotCircle.className = 'dot-circle';
+    dot.appendChild(dotCircle);
+    
+    const elementIcon = document.createElement('div');
+    elementIcon.className = 'element-icon';
+    elementIcon.innerHTML = '<img src="' + element.img + '" alt="' + element.name + '">';
+    dot.appendChild(elementIcon);
+    
+    if (index === 0) {
+      dot.classList.add('active', 'revealed');
+    }
+    
+    progressBar.appendChild(dot);
+    
+    if (index < pages.length - 1) {
+      const line = document.createElement('div');
+      line.className = 'progress-line';
+      line.setAttribute('data-index', index);
+      line.style.setProperty('--line-color', element.color);
+      progressBar.appendChild(line);
+    }
+  });
+  
+  document.getElementById('total-pages').textContent = pages.length;
+  updateElementDisplay();
+}
+
+function updateElementDisplay() {
+  const element = getElementForIndex(currentIndex);
+  const iconContainer = document.getElementById('current-element-icon');
+  const isComplete = completedElements.has(element.class);
+  const showAlt = isComplete && elementAltState[element.class];
+  
+  iconContainer.innerHTML = `
+    <img class="main-img ${showAlt ? 'hidden' : ''}" src="${element.img}" alt="${element.name}">
+    <img class="alt-img ${showAlt ? 'active' : ''}" src="${element.imgAlt}" alt="${element.name} Alt">
+  `;
+  iconContainer.style.setProperty('--current-element-color', element.color);
+  
+  const elementNameSpan = document.getElementById('element-name');
+  elementNameSpan.textContent = element.name + (isComplete ? ' ★' : '');
+  elementNameSpan.style.color = element.color;
+  
+  const toggleHint = document.getElementById('toggle-hint');
+  if (toggleHint) {
+    if (isComplete) {
+      toggleHint.classList.add('visible');
+    } else {
+      toggleHint.classList.remove('visible');
+    }
+  }
+}
+
+function revealDot(index, animate) {
+  const dots = document.querySelectorAll('.progress-dot');
+  const dot = dots[index];
+  
+  if (dot && !revealedPages.has(index)) {
+    revealedPages.add(index);
+    dot.classList.add('revealed');
+    
+    if (animate) {
+      dot.classList.add('revealing');
+      setTimeout(function() {
+        dot.classList.remove('revealing');
+      }, 500);
+    }
+    
+    const element = getElementForIndex(index);
+    checkElementComplete(element.class);
+    updateCollectionStatus();
+  }
+}
+
+function updateProgressBar() {
+  const dots = document.querySelectorAll('.progress-dot');
+  const lines = document.querySelectorAll('.progress-line');
+  
+  dots.forEach(function(dot, index) {
+    dot.classList.remove('active', 'visited');
+    
+    if (index === currentIndex) {
+      dot.classList.add('active');
+    } else if (revealedPages.has(index)) {
+      dot.classList.add('visited');
+    }
+  });
+  
+  lines.forEach(function(line, index) {
+    line.classList.remove('active');
+    if (index < currentIndex && revealedPages.has(index) && revealedPages.has(index + 1)) {
+      line.classList.add('active');
+    }
+  });
+  
+  document.getElementById('current-page').textContent = currentIndex + 1;
+  updateElementDisplay();
+  updateProgressBarIcons();
+  updateMoonVisibility();
+}
+
+function goToPage(index) {
+  currentIndex = index;
+  
+  document.querySelectorAll('.page').forEach(function(p) {
+    p.classList.remove('active');
+  });
+  document.getElementById(pages[currentIndex]).classList.add('active');
+  
+  revealDot(currentIndex, true);
+  updateProgressBar();
+}
+
+function showPage(id, isFromMenu) {
+  const index = pages.indexOf(id);
+  if (index !== -1) {
+    goToPage(index);
+  }
+}
+
+function prevPage() {
+  if (zoomOpen) return;
+  const newIndex = (currentIndex - 1 + pages.length) % pages.length;
+  goToPage(newIndex);
+}
+
+function nextPage() {
+  if (zoomOpen) return;
+  const newIndex = (currentIndex + 1) % pages.length;
+  goToPage(newIndex);
+}
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape' && zoomOpen) {
+    closeZoom();
+    return;
+  }
+  
+  if (zoomOpen) return;
+  
+  if (event.key === 'ArrowLeft') {
+    prevPage();
+  } else if (event.key === 'ArrowRight') {
+    nextPage();
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    toggleElementImage('up');
+  } else if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    toggleElementImage('down');
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  initElementCollection();
+  generateProgressBar();
+  initZoomableImages();
+  updateCollectionStatus();
+  updateMoonVisibility();
+});
+</script>
+
+</body>
+</html>
