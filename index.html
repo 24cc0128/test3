@@ -48,7 +48,23 @@
   width: 100%;
 }
 
-  
+#step3-3 .image-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: flex-start;
+  padding: 20px;
+  width: 100%;
+}
+
+/* Make images bigger */
+#step3-4 .image-container .result-img {
+  flex: 1;
+  max-width: 7000px;   /* Bigger max size */
+  min-width: 400px;   /* Bigger min size */
+  height: auto;
+  object-fit: contain;
+}
 
 /* Make images bigger */
 #step2-2 .image-container .result-img {
@@ -460,32 +476,28 @@
 .member-text {
   width: 45%;
   flex-shrink: 0;
-  margin-left: -100px;
+  margin-left: -220px;
   min-width: 0;
   max-width: 100%;
 }
 
 .member-text h1 {
   margin-top: 0;
-  font-size: 72px;
+  font-size: clamp(32px, 4vw, 72px);
   white-space: nowrap;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
-/* Special handling for long names */
 .member-text h1.long-name {
-  font-size: 52px;
+  font-size: clamp(28px, 3.2vw, 52px);
 }
 
 .member-text p {
-  font-size: 50px;
-  margin-bottom: 0px;
-  white-space: normal;
-  max-width: 100%;
-  line-height: 1.6;
-  margin: 10px 0;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  font-size: clamp(16px, 2.6vw, 50px);
+  line-height: 1.35;
+  margin: 8px 0;
+  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 body.member-page-active {
@@ -588,8 +600,7 @@ body.member-page-active {
 
 .images-container .result-img {
   flex: 1;
-  min-width: 300px;
-  max-width: 48%;
+  min-width: 300px;13:17 2026/01/16
 }
 
 /* Special layout for step4-4 with vertical right column */
@@ -905,6 +916,7 @@ body {
   from { opacity: 0; transform: translateY(-5px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
 
 .page {
   position: absolute;
@@ -1438,6 +1450,30 @@ p {
   }
 }
 
+#step3-3,
+#step3-4,
+#step4-1,
+#step4-2,
+#step4-3,
+#step4-4,
+#step4-5,
+#step4-6,
+#step4-7,
+#step4-8,
+#step4-9.page{
+  width: 95% !important;
+  max-width: none !important;
+}
+
+#step4-9.page{
+  width: 95% !important;
+  max-width: none !important;
+}
+
+#step4-5 .step4-5text{
+  margin-left: 100px;   /* move left */
+}
+
 </style>
 </head>
 
@@ -1550,7 +1586,7 @@ p {
       <h1>翁 俊涵</h1>
       <p>24cc0128</p>
       <div class="spacer"></div>
-      <p>▸Role: ドキュメント - htmlウエブページ</p>
+      <p>▸Role: ドキュメント - html</p>
       <p>▸Skills: ピアノ引くこと</p>
       <p>▸Food: シチュー</p>
       <p>▸likes: 白上フブキ</p>
@@ -1586,7 +1622,7 @@ p {
       <h1 class="long-name">ソフヤン ファリオ</h1>
       <p>24cc0124</p>
       <div class="spacer"></div>
-      <p>▸Role: AI Integration - Aws Server Setup</p>
+      <p>▸Role: AI Integration - Aws Server</p>
       <p>▸Skills: ゲーミング</p>
       <p>▸Food: つけ麺</p>
       <p>▸likes: 猫</p>
@@ -1719,7 +1755,6 @@ p {
 <div id="step3-3" class="page">
   <h2>ファイルサーバーのリソース使用状況</h2>
   <h2>　</h2>
-  <h2>　</h2>
   <div class="images-container">
     <img src="resources/fileCPU.png" class="result-img zoomable">
     <img src="resources/filemem.png" class="result-img zoomable">
@@ -1728,7 +1763,6 @@ p {
 
 <div id="step3-4" class="page">
   <h2>メールサーバーのリソース使用状況</h2>
-  <h2>　</h2>
   <h2>　</h2>
   <div class="images-container">
     <img src="resources/mailCPU.png" class="result-img zoomable">
@@ -1778,7 +1812,7 @@ p {
 </div>
 
 <div id="step4-5" class="page">
-  <h2>ログ</h2>
+  <h2 class="step4-5text">ログ</h2>
   <h3>　</h3>
   <div class="images-container">
     <img src="resources/grafana_ai_alert_report_5.png" class="result-img zoomable">
