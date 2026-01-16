@@ -6,6 +6,75 @@
 
 <style>
 
+/* Theme and Background pages - move content left */
+#theme.page,
+#background.page {
+  width: 95%;
+  max-width: none;
+}
+
+#theme .device-layout,
+#background .device-layout {
+  justify-content: flex-start;  /* Align to left */
+  gap: 50px;
+  padding-right: 500px;
+}
+
+#theme .device-text,
+#background .device-text {
+  width: 40%;
+  flex-shrink: 0;
+}
+
+#theme .result-img,
+#background .result-img {
+  max-width: 5000px;  /* Control image size */
+  margin-right: auto;  /* Push image left */
+}
+
+/* Make step2-2 page wider */
+#step2-2.page {
+  max-width: none;  /* Increase from 1200px */
+  width: 95%;         /* Use more screen width */
+}
+
+/* Make the image container use full width */
+#step2-2 .image-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: flex-start;
+  padding: 20px;
+  width: 100%;
+}
+
+  
+
+/* Make images bigger */
+#step2-2 .image-container .result-img {
+  flex: 1;
+  max-width: 7000px;   /* Bigger max size */
+  min-width: 400px;   /* Bigger min size */
+  height: auto;
+  object-fit: contain;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.image-container .result-img {
+  flex: 1;
+  max-width: 800px;  /* Each image takes up to 45% of container */
+  min-width: 300px;  /* Minimum size */
+  height: auto;
+  object-fit: contain;
+}
+
 /* Usecase page styles */
 #usecase.page {
   display: flex;
@@ -135,22 +204,22 @@
   justify-content: center;
   align-items: flex-start;
   min-height: calc(100vh - 200px);
-  padding: 40px;
+  padding: none;
 }
 
 #purpose h1,
 #goal h1 {
-  font-size: 72px;
+  font-size: 120px;
   margin-bottom: 40px;
 }
 
 #purpose h2,
 #goal h2 {
-  font-size: 36px;
+  font-size: 43px;
   margin: 15px 0;
   font-weight: normal;
   line-height: 1.5;
-  max-width: 100%;
+  max-width: noen;
 }
 
 @media (max-width: 900px) {
@@ -267,7 +336,6 @@
 #step1.page,
 #step2-1.page,
 #step2-2.page,
-#step2-3.page,
 #step3-1.page,
 #step3-2.page,
 #step3-3.page,
@@ -287,7 +355,6 @@
 #step1.page h1,
 #step2-1.page h1,
 #step2-2.page h1,
-#step2-3.page h1,
 #step3-1.page h1,
 #step3-2.page h1,
 #step3-3.page h1,
@@ -308,7 +375,6 @@
 #step1.page h2,
 #step2-1.page h2,
 #step2-2.page h2,
-#step2-3.page h2,
 #step3-1.page h2,
 #step3-2.page h2,
 #step3-3.page h2,
@@ -330,7 +396,6 @@
   #step1.page h1,
   #step2-1.page h1,
   #step2-2.page h1,
-  #step2-3.page h1,
   #step3-1.page h1,
   #step3-2.page h1,
   #step3-3.page h1,
@@ -350,7 +415,6 @@
   #step1.page h2,
   #step2-1.page h2,
   #step2-2.page h2,
-  #step2-3.page h2,
   #step3-1.page h2,
   #step3-2.page h2,
   #step3-3.page h2,
@@ -396,7 +460,7 @@
 .member-text {
   width: 45%;
   flex-shrink: 0;
-  margin-left: -40px;
+  margin-left: -100px;
   min-width: 0;
   max-width: 100%;
 }
@@ -414,7 +478,7 @@
 }
 
 .member-text p {
-  font-size: 28px;
+  font-size: 50px;
   margin-bottom: 0px;
   white-space: normal;
   max-width: 100%;
@@ -1436,7 +1500,6 @@ p {
       <button onclick="showPage('step1', true)">メール送信</button>
       <button onclick="showPage('step2-1', true)">フィッシングメール送信</button>
       <button onclick="showPage('step2-2', true)">メール送信失敗</button>
-      <button onclick="showPage('step2-3', true)">メールのブロック</button>
       <button onclick="showPage('step3-1', true)">ファイルアップロード</button>
       <button onclick="showPage('step3-2', true)">異常ファイルアップロード</button>
       <button onclick="showPage('step3-3', true)">ファイルサーバリソース</button>
@@ -1527,7 +1590,7 @@ p {
       <p>▸Skills: ゲーミング</p>
       <p>▸Food: つけ麺</p>
       <p>▸likes: 猫</p>
-      <p>▸Hobby: ファンタジー小説を読む</p>
+      <p>▸Hobby: ファンタジ小説を読む</p>
     </div>
     <div class="member-photo">
       <img src="resources/gekido.jpg" alt="ソフヤン ファリオの写真" class="zoomable">
@@ -1557,10 +1620,12 @@ p {
 </div>
 
 <div id="purpose" class="page">
+ <div class="goal-text">
   <h1>目的</h1>
   <h2>クラウドサーバの構築</h2>
   <h2>ログおよびメトリクス運用と監視そしてそのセキュリティの運用</h2>
   <h2>AIを使用した運用状況の報告</h2>
+ </div>
 </div>
 
 <div id="goal" class="page">
@@ -1629,15 +1694,12 @@ p {
 </div>
 
 <div id="step2-2" class="page">
-  <h2>メール送信の失敗</h2>
+  <h2>メール送信の失敗/メールはブロックされた</h2>
   <h3>　</h3>
-  <img src="resources/blocked mail does not come.png" class="result-img zoomable">
-</div>
-
-<div id="step2-3" class="page">
-  <h2>メールはブロックされた</h2>
-  <h3>　</h3>
-  <img src="resources/blocked sended mail.png" class="result-img zoomable">
+  <div class="image-container">
+    <img src="resources/blocked mail does not come.png" class="result-img zoomable">
+    <img src="resources/blocked sended mail.png" class="result-img zoomable">
+  </div>
 </div>
 
 <div id="step3-1" class="page">
@@ -1894,7 +1956,7 @@ p {
 const pages = [
   'home', 'member1', 'member2', 'member3', 'theme', 'background', 'purpose', 'goal', 'usecase',
   'device',
-  'step1', 'step2-1', 'step2-2', 'step2-3', 'step3-1', 'step3-2', 'step3-3', 'step3-4', 'step4-1', 'step4-2', 'step4-3', 'step4-4', 'step4-5', 'step4-6', 'step4-7', 'step4-8','step4-9',
+  'step1', 'step2-1', 'step2-2', 'step3-1', 'step3-2', 'step3-3', 'step3-4', 'step4-1', 'step4-2', 'step4-3', 'step4-4', 'step4-5', 'step4-6', 'step4-7', 'step4-8','step4-9',
   'prob1', 'prob2', 'prob3'
 ];
 
@@ -1915,7 +1977,7 @@ const elements = [
   { name: 'Cryo', class: 'cryo', color: '#b3e5fc', img: 'resources/Cryo.png', imgAlt: 'resources/Cryo2.png' }
 ];
 
-const elementDistribution = [4, 4, 4, 6, 4, 4, 3];
+const elementDistribution = [4, 4, 4, 5, 4, 4, 4];
 
 let currentIndex = 0;
 let revealedPages = new Set([0]);
