@@ -7,31 +7,45 @@
 <style>
 
 /* Theme and Background pages - move content left */
-#theme.page,
+#Theme.page,
 #background.page {
-  width: 95%;
-  max-width: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 200px);
+  padding: none;
 }
 
-#theme .device-layout,
-#background .device-layout {
-  justify-content: flex-start;  /* Align to left */
-  gap: 50px;
-  padding-right: 500px;
+#Theme h1, 
+#background h1 {
+  font-size: 120px;
+  margin-bottom: 40px;
 }
 
-#theme .device-text,
-#background .device-text {
-  width: 40%;
-  flex-shrink: 0;
+#Theme h2,
+#background h2 {
+  font-size: 43px;
+  margin: 15px 0;
+  font-weight: normal;
+  line-height: 1.5;
+  max-width: noen;
 }
 
-#theme .result-img,
-#background .result-img {
-  margin-top: 100px;
-  max-width: 5000px;  /* Control image size */
-  margin-right: auto;  /* Push image left */
+@media (max-width: 900px) {
+  #Theme h1,
+  #background h1 {
+    font-size: 42px;
+    margin-bottom: 25px;
+  }
+  
+  #Theme h2,
+  #background h2 {
+    font-size: 22px;
+    margin: 10px 0;
+  }
 }
+
 
 /* Make step2-2 page wider */
 #step2-2.page {
@@ -214,15 +228,7 @@
 }
 
 /* Purpose and Goal page styles */
-#purpose.page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: calc(100vh - 200px);
-  padding: none;
-}
-,
+#purpose.page,
 #goal.page {
   display: flex;
   flex-direction: column;
@@ -232,24 +238,13 @@
   padding: none;
 }
 
-#purpose h1 {
-  font-size: 120px;
-  margin-bottom: 40px;
-}
-,
+#purpose h1, 
 #goal h1 {
   font-size: 120px;
   margin-bottom: 40px;
 }
 
-#purpose h2 {
-  font-size: 43px;
-  margin: 15px 0;
-  font-weight: normal;
-  line-height: 1.5;
-  max-width: noen;
-}
-,
+#purpose h2,
 #goal h2 {
   font-size: 43px;
   margin: 15px 0;
@@ -259,21 +254,13 @@
 }
 
 @media (max-width: 900px) {
-  #purpose h1 {
-    font-size: 42px;
-    margin-bottom: 25px;
-  }
-  ,
+  #purpose h1,
   #goal h1 {
     font-size: 42px;
     margin-bottom: 25px;
   }
   
-  #purpose h2 {
-    font-size: 22px;
-    margin: 10px 0;
-  }
-  ,
+  #purpose h2,
   #goal h2 {
     font-size: 22px;
     margin: 10px 0;
