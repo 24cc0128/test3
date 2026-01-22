@@ -214,7 +214,15 @@
 }
 
 /* Purpose and Goal page styles */
-#purpose.page,
+#purpose.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 200px);
+  padding: none;
+}
+,
 #goal.page {
   display: flex;
   flex-direction: column;
@@ -224,13 +232,24 @@
   padding: none;
 }
 
-#purpose h1,
+#purpose h1 {
+  font-size: 120px;
+  margin-bottom: 40px;
+}
+,
 #goal h1 {
   font-size: 120px;
   margin-bottom: 40px;
 }
 
-#purpose h2,
+#purpose h2 {
+  font-size: 43px;
+  margin: 15px 0;
+  font-weight: normal;
+  line-height: 1.5;
+  max-width: noen;
+}
+,
 #goal h2 {
   font-size: 43px;
   margin: 15px 0;
@@ -240,13 +259,21 @@
 }
 
 @media (max-width: 900px) {
-  #purpose h1,
+  #purpose h1 {
+    font-size: 42px;
+    margin-bottom: 25px;
+  }
+  ,
   #goal h1 {
     font-size: 42px;
     margin-bottom: 25px;
   }
   
-  #purpose h2,
+  #purpose h2 {
+    font-size: 22px;
+    margin: 10px 0;
+  }
+  ,
   #goal h2 {
     font-size: 22px;
     margin: 10px 0;
